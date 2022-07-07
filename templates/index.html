@@ -40,16 +40,25 @@ function get_data(route) {
 $("#ПМ1").click(function(e) {
     e.preventDefault();
     get_data("/api/t1");
+    $(this).css('color', '#ff0002');
+    $("#ПМ2").css('color', '#0c5ec5');
+    $("#ПМ3").css('color', '#0c5ec5');
 });
 
 $("#ПМ2").click(function(e) {
     e.preventDefault();
     get_data("/api/t2");
+    $(this).css('color', '#ff0002');
+    $("#ПМ1").css('color', '#0c5ec5');
+    $("#ПМ3").css('color', '#0c5ec5');
 });
 
 $("#ПМ3").click(function(e) {
     e.preventDefault();
     get_data("/api/t3");
+    $(this).css('color', '#ff0002');
+    $("#ПМ1").css('color', '#0c5ec5');
+    $("#ПМ2").css('color', '#0c5ec5');
 });
 
 </script>
