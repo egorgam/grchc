@@ -1,0 +1,55 @@
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<a href="{% url 'logout' %}" style="display: flex; justify-content: flex-end">Log Out</a>
+
+<div class="container">
+    <div class="row">
+      <div class="col-2 mt-5">
+            {% for item in allowed_items %}
+                <p><a href="#" id={{ item }}>{{ item }}</a></p>
+            {% endfor %}
+      </div>
+      <div class="col-5">
+          <table class="mt-5 table table-bordered">
+            <tbody id="table">
+            </tbody>
+          </table>
+      </div>
+    </div>
+</div>
+<script>
+
+function get_data(route) {
+    $.ajax({
+        type: "GET",
+        url: route,
+        success: function(result) {
+            var trHTML = '';
+            $.each(result, function (i, obj) {
+                console.log(obj)
+                trHTML += '<tr><td>' + obj.name + '</td></tr>';
+            });
+            $('#table').html(trHTML);
+        }
+    });
+}
+
+$("#ПМ1").click(function(e) {
+    e.preventDefault();
+    get_data("/api/t1");
+});
+
+$("#ПМ2").click(function(e) {
+    e.preventDefault();
+    get_data("/api/t2");
+});
+
+$("#ПМ3").click(function(e) {
+    e.preventDefault();
+    get_data("/api/t3");
+});
+
+</script>
